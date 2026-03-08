@@ -12,6 +12,9 @@
   <img src="https://img.shields.io/badge/Groq_Cloud-F55036?style=for-the-badge&logo=lightning&logoColor=white" />
   <img src="https://img.shields.io/badge/Llama_3.1-0668E1?style=for-the-badge&logo=meta&logoColor=white" />
   <img src="https://img.shields.io/badge/FAISS_DB-0055FF?style=for-the-badge&logo=meta&logoColor=white" />
+  <img src="https://img.shields.io/badge/Pandas-150458?style=for-the-badge&logo=pandas&logoColor=white" />
+  <img src="https://img.shields.io/badge/NumPy-013243?style=for-the-badge&logo=numpy&logoColor=white" />
+
 </p>
 
 
@@ -82,4 +85,3 @@ Para auditar el código fuente e instanciar el motor RAG localmente:
   ```bash
    streamlit run app.py
   ```
-p.py
