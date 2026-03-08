@@ -1,0 +1,205 @@
+/* =========================================
+   VARIABLES Y RESET (Fintech Dark Navy)
+   ========================================= */
+:root {
+    --bg-main: #050b14;
+    --bg-panel: #0b1221;
+    --border-color: #1e293b;
+    --text-primary: #f8fafc;
+    --text-secondary: #64748b;
+    --accent-blue: #3b82f6;
+    --accent-orange: #f7931a;
+    --accent-red: #ef4444;
+    --accent-green: #10b981;
+}
+
+/* 1. Ocultar UI nativa de Streamlit */
+[data-testid="stHeader"] { display: none !important; }
+#MainMenu { visibility: hidden !important; }
+footer { visibility: hidden !important; }
+
+/* 2. PARCHE AL EFECTO "HUNDIDO" (Eliminar márgenes nativos) */
+.block-container {
+    padding-top: 1.5rem !important;
+    padding-bottom: 1rem !important;
+    max-width: 98% !important;
+}
+
+/* Fondo General de la Aplicación */
+.stApp {
+    background-color: var(--bg-main) !important;
+    color: var(--text-primary) !important;
+}
+
+/* =========================================
+   PANELES Y FORMULARIOS
+   ========================================= */
+[data-testid="stForm"] {
+    background: linear-gradient(to right, var(--bg-panel), #0d1425) !important;
+    border: 1px solid var(--border-color) !important;
+    border-left: 3px solid var(--accent-red) !important;
+    border-radius: 8px !important;
+    padding: 1.5rem !important;
+}
+
+[data-testid="stMetric"] {
+    background-color: var(--bg-panel) !important;
+    border: 1px solid var(--border-color) !important;
+    border-radius: 8px !important;
+    padding: 1rem 1.5rem !important;
+    position: relative;
+    overflow: hidden;
+    box-shadow: 0 4px 6px rgba(0,0,0,0.3) !important;
+}
+
+[data-testid="column"]:nth-child(1) [data-testid="stMetric"] { border-left: 3px solid var(--accent-green) !important; }
+[data-testid="column"]:nth-child(2) [data-testid="stMetric"] { border-left: 3px solid var(--accent-red) !important; box-shadow: -5px 0 15px rgba(239, 68, 68, 0.1) !important;}
+[data-testid="column"]:nth-child(3) [data-testid="stMetric"] { border-left: 3px solid var(--accent-orange) !important; box-shadow: -5px 0 15px rgba(247, 147, 26, 0.1) !important;}
+
+/* =========================================
+   BOTONES E INPUTS
+   ========================================= */
+[data-testid="baseButton-primary"] {
+    background-color: rgba(239, 68, 68, 0.1) !important;
+    color: var(--accent-red) !important;
+    border: 1px solid var(--accent-red) !important;
+    border-radius: 6px !important;
+    font-weight: 600 !important;
+    transition: all 0.3s ease !important;
+}
+[data-testid="baseButton-primary"]:hover {
+    background-color: var(--accent-red) !important;
+    color: white !important;
+    box-shadow: 0 0 12px rgba(239, 68, 68, 0.4) !important;
+    transform: translateY(-2px) !important;
+}
+
+[data-testid="baseButton-secondary"] {
+    background-color: #030712 !important;
+    border: 1px solid var(--border-color) !important;
+    color: var(--text-secondary) !important;
+    border-radius: 6px !important;
+}
+[data-testid="baseButton-secondary"]:hover {
+    border-color: var(--accent-blue) !important;
+    color: white !important;
+}
+
+div[data-baseweb="input"] > div, 
+div[data-baseweb="datepicker"] > div {
+    background-color: #030712 !important;
+    border: 1px solid var(--border-color) !important;
+    border-radius: 4px !important;
+    color: white !important;
+}
+
+/* =========================================
+   CHAT RAG (Kanlaap)
+   ========================================= */
+/* =========================================
+   CHAT RAG (Kanlaap) - ALINEACIÓN Y DISEÑO
+   ========================================= */
+[data-testid="stChatMessage"] {
+    background-color: #030712 !important;
+    border: 1px solid var(--border-color) !important;
+    border-radius: 8px !important;
+    padding: 1rem !important;
+    margin-bottom: 1rem !important;
+}
+[data-testid="stChatMessage"]:nth-child(odd) { border-left: 2px solid var(--accent-blue) !important; }
+[data-testid="stChatMessage"]:nth-child(even) { border-left: 2px solid var(--accent-orange) !important; }
+
+/* Parche para integrar el cajón de texto (Eliminar píldora gris) */
+[data-testid="stChatInput"] {
+    background-color: transparent !important;
+    padding: 0 !important; 
+    margin-top: 0.5rem !important;
+}
+
+[data-testid="stChatInput"] > div {
+    background-color: #030712 !important;
+    border: 1px solid var(--border-color) !important;
+    border-radius: 8px !important;
+    transition: all 0.3s ease;
+}
+
+[data-testid="stChatInput"] > div:focus-within {
+    border-color: var(--accent-blue) !important;
+    box-shadow: 0 0 10px rgba(59, 130, 246, 0.2) !important;
+}
+
+[data-testid="stChatInput"] textarea {
+    color: white !important;
+}
+/* =========================================
+   SECCIÓN 2: ACERCA DE KANLAAP (Proporción 60/40 y Tamaño Extra)
+   ========================================= */
+.about-section { 
+    background-color: transparent; 
+    padding: 2rem 0 4rem 0; 
+    border-top: 1px solid var(--border-color); 
+    margin-top: 2rem; 
+}
+
+/* 1. RESTAURAMOS LA CUADRÍCULA 60/40 EXACTA */
+.about-container { 
+    display: grid; 
+    grid-template-columns: 6fr 4fr; /* 60% izquierda, 40% derecha */
+    gap: 2rem; 
+    width: 100%; 
+    align-items: stretch; 
+}
+
+/* 2. PANEL IZQUIERDO GIGANTE (Texto y Tarjetas) */
+.about-text { 
+    display: flex; 
+    flex-direction: column; 
+    justify-content: center; 
+    background-color: var(--bg-panel); 
+    border: 1px solid var(--border-color);
+    padding: 3rem 3.5rem; /* Relleno masivo para igualar la gráfica */
+    border-radius: 12px;
+    box-shadow: 0 4px 10px rgba(0,0,0,0.2);
+}
+.about-text h2 { font-size: 2.5rem; margin-bottom: 0.8rem; color: white; line-height: 1.2; font-weight: 700; }
+.about-text h3 { font-size: 1.3rem; color: var(--accent-orange); margin-bottom: 1.5rem; font-weight: 500; letter-spacing: 0.5px; }
+.about-text p { color: var(--text-secondary); line-height: 1.8; margin-bottom: 3rem; font-size: 1.15rem; }
+
+/* 3. TARJETAS AMPLIADAS */
+.pitch-cards { display: flex; flex-direction: column; gap: 1.5rem; }
+.pitch-card { 
+    background: #030712; 
+    border: 1px solid var(--border-color); 
+    padding: 1.8rem; /* Tarjetas mucho más altas y gordas */
+    border-radius: 10px; display: flex; gap: 1.5rem; 
+    align-items: flex-start; transition: transform 0.3s; 
+}
+.pitch-card:hover { transform: translateX(5px); border-color: var(--accent-orange); box-shadow: -5px 0 15px rgba(247, 147, 26, 0.05); }
+.pc-icon { font-size: 2rem; background: var(--bg-panel); width: 65px; height: 65px; display: flex; justify-content: center; align-items: center; border-radius: 10px; border: 1px solid var(--border-color); flex-shrink: 0;}
+.pc-content strong { display: block; color: white; font-size: 1.2rem; margin-bottom: 0.5rem;}
+.pc-content span { color: var(--text-secondary); font-size: 1rem; line-height: 1.6; display: block;}
+
+/* 4. PANEL DERECHO (Diagrama Acoplado al Chat) */
+.arch-diagram { 
+    background: var(--bg-panel); border: 1px solid var(--border-color); 
+    padding: 3rem 2.5rem; /* Mismo relleno masivo que el texto */
+    border-radius: 12px; 
+    display: flex; flex-direction: column; 
+    justify-content: center; 
+    gap: 0; 
+    align-items: center; position: relative; 
+    box-shadow: 0 4px 10px rgba(0,0,0,0.2);
+}
+.arch-box { 
+    padding: 1.5rem 2rem; /* Cajas de arquitectura más altas */
+    border: 1px solid var(--border-color); 
+    border-radius: 8px; font-size: 1rem; width: 100%; text-align: center; 
+    background: #030712; font-weight: 600; position: relative; z-index: 2; color: white;
+}
+.arch-box.ui { border-left: 5px solid var(--accent-blue); }
+.arch-box.data { border-left: 5px solid var(--accent-green); }
+.arch-box.ai { border-left: 5px solid var(--accent-orange); }
+.arch-arrow { 
+    width: 3px; height: 35px; background: var(--border-color); /* Flechas más gruesas y largas */
+    position: relative; z-index: 1;
+}
