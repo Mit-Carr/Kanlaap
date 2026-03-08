@@ -193,17 +193,27 @@ def main():
         poder_real = ultimo_mes['Poder Adquisitivo (Real)']
         btc_portafolio = ultimo_mes['Tu Dinero en Bitcoin']
 
+        # --- CÁLCULO DINÁMICO DE PORCENTAJES ---
+        # Calculamos la diferencia porcentual: ((Final - Inicial) / Inicial) * 100
+        if nominal_acumulado > 0:
+            porcentaje_devaluacion = ((poder_real - nominal_acumulado) / nominal_acumulado) * 100
+            porcentaje_roi = ((btc_portafolio - nominal_acumulado) / nominal_acumulado) * 100
+        else:
+            porcentaje_devaluacion = 0
+            porcentaje_roi = 0
+
         with kpi_container:
             kpi_col1, kpi_col2, kpi_col3 = st.columns(3)
             with kpi_col1:
                 st.metric(label="Inversión Nominal", value=f"${nominal_acumulado:,.0f}", delta="Capital Base", delta_color="off")
             with kpi_col2:
-                st.metric(label="Poder Adquisitivo (Real)", value=f"${poder_real:,.0f}", delta="-24% devaluación", delta_color="normal")
+                # delta_color="normal" en Streamlit hace que los negativos sean rojos automáticamente
+                st.metric(label="Poder Adquisitivo (Real)", value=f"${poder_real:,.0f}", delta=f"{porcentaje_devaluacion:.1f}% devaluación", delta_color="normal")
             with kpi_col3:
-                st.metric(label="Valor Refugio BTC", value=f"${btc_portafolio:,.0f}", delta="+187% ROI Estrategia", delta_color="normal")
-
-        with chart_container:
-            st.area_chart(df, color=["#3b82f6", "#ef4444", "#f7931a"], height=250)
+                # Forzamos el signo + para que se vea como ganancia
+                st.metric(label="Valor Refugio BTC", value=f"${btc_portafolio:,.0f}", delta=f"+{porcentaje_roi:.1f}% ROI Estrategia", delta_color="normal")
+            with chart_container:
+                st.area_chart(df, color=["#3b82f6", "#ef4444", "#f7931a"], height=250)
 
     # --- SECCIÓN DERECHA: RAG CHATBOT ---
     with col_chat:
